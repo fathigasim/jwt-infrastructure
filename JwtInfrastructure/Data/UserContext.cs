@@ -23,6 +23,7 @@ namespace JwtInfrastructure.Data
             {
                 Id = 1,
                 UserName = "johndoe",
+                Email="mohammedfathi0810@gmail.com",
                 Password = "def@123",
                 Role = "Admin",
 

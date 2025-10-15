@@ -35,6 +35,7 @@ builder.Services.Configure<RequestLocalizationOptions>(options => {
 });
 
 // Add services to the container.
+builder.Services.AddTransient<IEmailService,EmailService>();
 //builder.Services.AddSingleton<CommonLocalizationService>();
 //builder.Services.AddRazorPages().AddViewLocalization().AddDataAnnotationsLocalization(options =>
 //{

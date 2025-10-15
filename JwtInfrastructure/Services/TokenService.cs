@@ -63,5 +63,65 @@ namespace JwtInfrastructure.Services
 
             return principal;
         }
+
+
+        // 🔽 Add these methods
+
+        public string GeneratePasswordResetToken(int userId)
+        {
+            var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["JwtSettings:Secret"]));
+            var signinCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
+
+            var claims = new[]
+            {
+                //new Claim(JwtRegisteredClaimNames.Sub, userId.ToString()),
+                new Claim(ClaimTypes.NameIdentifier, userId.ToString()),
+                new Claim("purpose", "password_reset")
+            };
+
+            var tokenOptions = new JwtSecurityToken(
+                issuer: configuration["JwtSettings:Issuer"],
+                audience: configuration["JwtSettings:Audience"],
+                claims: claims,
+                expires: DateTime.UtcNow.AddMinutes(15), // short expiration
+                signingCredentials: signinCredentials
+            );
+
+            return new JwtSecurityTokenHandler().WriteToken(tokenOptions);
+        }
+
+        public int? ValidatePasswordResetToken(string token)
+        {
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var key = Encoding.UTF8.GetBytes(configuration["JwtSettings:Secret"]);
+
+            try
+            {
+                var principal = tokenHandler.ValidateToken(token, new TokenValidationParameters
+                {
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
+                    ValidateLifetime = true,
+                    ValidIssuer = configuration["JwtSettings:Issuer"],
+                    ValidAudience = configuration["JwtSettings:Audience"],
+                    IssuerSigningKey = new SymmetricSecurityKey(key)
+                }, out _);
+
+                var purpose = principal.Claims.FirstOrDefault(c => c.Type == "purpose")?.Value;
+                if (purpose != "password_reset")
+                    return null;
+
+                 // var userId = principal.Claims.FirstOrDefault(c => c.Type == JwtRegisteredClaimNames.Sub)?.Value;
+                var userId = principal.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+               return int.TryParse(userId, out var parsedId)? parsedId:null;
+              //  return Guid.TryParse(userId, out var parsedId) ? parsedId : null;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+     
     }
 }

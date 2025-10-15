@@ -23,7 +23,7 @@ namespace JwtInfrastructure.Controllers
             _localizer = factory.Create("CommonResources", Assembly.GetExecutingAssembly().GetName().Name);
         }
         [HttpGet]
-        public async Task<ActionResult<PagedResult<Product>>> Get(string? q = "", string? sort = "", int page = 1, int pageSize = 2)
+        public async Task<ActionResult<PagedResult<Product>>> Get(string? q = "", string? sort = "", int page = 1, int pageSize = 5)
         {
             var query = dbContext.Products.AsQueryable();
             if (!string.IsNullOrEmpty(q))
