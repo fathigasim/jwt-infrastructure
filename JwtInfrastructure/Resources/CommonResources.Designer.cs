@@ -61,6 +61,24 @@ namespace JwtInfrastructure.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Email is Required.
+        /// </summary>
+        public static string Email_is_Required {
+            get {
+                return ResourceManager.GetString("Email_is_Required", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid Password Format.
+        /// </summary>
+        public static string inValid_Password {
+            get {
+                return ResourceManager.GetString("inValid_Password", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Price less than or more than expected.
         /// </summary>
         public static string Less_than_or_exceeded_range_price {
@@ -75,6 +93,33 @@ namespace JwtInfrastructure.Resources {
         public static string Name_is_Required {
             get {
                 return ResourceManager.GetString("Name_is_Required", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Password is required.
+        /// </summary>
+        public static string Password_is_required {
+            get {
+                return ResourceManager.GetString("Password_is_required", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Password must contain at least one uppercase letter, one lowercase letter, one digit, one special character, and be at least 8 characters long..
+        /// </summary>
+        public static string Password_Policy {
+            get {
+                return ResourceManager.GetString("Password_Policy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please enter a valid email address.
+        /// </summary>
+        public static string Please_enter_a_valid_email_address {
+            get {
+                return ResourceManager.GetString("Please_enter_a_valid_email_address", resourceCulture);
             }
         }
         
@@ -111,6 +156,24 @@ namespace JwtInfrastructure.Resources {
         public static string UnexpectedError {
             get {
                 return ResourceManager.GetString("UnexpectedError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User or Password Incorrect.
+        /// </summary>
+        public static string User_Or_Password_Incorrect {
+            get {
+                return ResourceManager.GetString("User_Or Password_Incorrect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Username is Required.
+        /// </summary>
+        public static string Username_is_Required {
+            get {
+                return ResourceManager.GetString("Username_is_Required", resourceCulture);
             }
         }
     }

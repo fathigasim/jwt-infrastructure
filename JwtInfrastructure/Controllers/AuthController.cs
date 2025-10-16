@@ -1,12 +1,15 @@
 ﻿using JwtInfrastructure.Data;
+using JwtInfrastructure.Helpers;
 using JwtInfrastructure.Models;
 using JwtInfrastructure.Models.Dtos;
 using JwtInfrastructure.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Localization;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
+using System.Reflection;
 using System.Security.Claims;
 using System.Text;
 
@@ -18,15 +21,31 @@ namespace JwtInfrastructure.Controllers
     {
         private readonly UserContext _userContext;
         private readonly ITokenService _tokenService;
+        IStringLocalizer localizer;
         IEmailService emailService;
-        public AuthController(UserContext userContext, ITokenService tokenService, IEmailService _emailService)
+        public AuthController(UserContext userContext, ITokenService tokenService,
+            IEmailService _emailService, IStringLocalizerFactory factory)
         {
             _userContext = userContext ?? throw new ArgumentNullException(nameof(userContext));
             _tokenService = tokenService ?? throw new ArgumentNullException(nameof(tokenService));
             emailService = _emailService ?? throw new ArgumentNullException(nameof(_emailService));
+            localizer = factory.Create("CommonResources", Assembly.GetExecutingAssembly().GetName().Name); 
         }
 
-        [HttpPost("login")]
+        [HttpPost("Register")]
+        //[Bind("username", "password")]
+        public IActionResult Register([FromBody] RegisterDto registerDto)
+        {
+
+          //  _userContext.LoginModels.
+           // Argon2Helper.HashPassword(loginModel.Password);
+
+
+            return Ok("registered successfully");
+        }
+
+
+            [HttpPost("login")]
         //[Bind("username", "password")]
         public IActionResult Login([FromBody] LoginModel loginModel)
         {
@@ -35,10 +54,15 @@ namespace JwtInfrastructure.Controllers
                 return BadRequest("Invalid client request");
             }
 
+            if (loginModel.Password.Length <= 2) {
+                return BadRequest(new { error = "inValid_Password" });
+            }
+             
+
             var user = _userContext.LoginModels.FirstOrDefault(u =>
                 (u.UserName == loginModel.UserName) && (u.Password == loginModel.Password));
             if (user is null)
-                return Unauthorized();
+                return BadRequest(new { error=localizer["User_Or Password_Incorrect"].Value });
 
             var claims = new List<Claim>
         {
@@ -61,7 +85,7 @@ namespace JwtInfrastructure.Controllers
                 Token = accessToken,
                 RefreshToken = refreshToken
             });
-        }
+         }
 
 
 

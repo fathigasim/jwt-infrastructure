@@ -88,3 +88,6 @@ C:\Users\USER\source\repos\fathigasim\jwt-infrastructure\JwtInfrastructure\obj\D
 C:\Users\USER\source\repos\fathigasim\jwt-infrastructure\JwtInfrastructure\obj\Debug\net7.0\JwtInfrastructure.pdb
 C:\Users\USER\source\repos\fathigasim\jwt-infrastructure\JwtInfrastructure\obj\Debug\net7.0\JwtInfrastructure.genruntimeconfig.cache
 C:\Users\USER\source\repos\fathigasim\jwt-infrastructure\JwtInfrastructure\obj\Debug\net7.0\ref\JwtInfrastructure.dll
+C:\Users\USER\source\repos\fathigasim\jwt-infrastructure\JwtInfrastructure\bin\Debug\net7.0\BCrypt.Net-Next.dll
+C:\Users\USER\source\repos\fathigasim\jwt-infrastructure\JwtInfrastructure\bin\Debug\net7.0\Konscious.Security.Cryptography.Argon2.dll
+C:\Users\USER\source\repos\fathigasim\jwt-infrastructure\JwtInfrastructure\bin\Debug\net7.0\Konscious.Security.Cryptography.Blake2.dll
