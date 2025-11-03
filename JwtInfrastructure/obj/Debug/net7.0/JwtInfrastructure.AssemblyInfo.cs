@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("JwtInfrastructure")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d53f775c839ccdf016c2ae11aac4fdafecf326d3")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+abdf63a06a2a7534b726b000fbe940031b78aec9")]
 [assembly: System.Reflection.AssemblyProductAttribute("JwtInfrastructure")]
 [assembly: System.Reflection.AssemblyTitleAttribute("JwtInfrastructure")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

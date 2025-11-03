@@ -115,6 +115,15 @@ namespace JwtInfrastructure.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to If email exist reset password was sent.
+        /// </summary>
+        public static string Password_Reset_Email_Sent {
+            get {
+                return ResourceManager.GetString("Password_Reset_Email_Sent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Please enter a valid email address.
         /// </summary>
         public static string Please_enter_a_valid_email_address {

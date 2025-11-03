@@ -99,8 +99,8 @@ namespace JwtInfrastructure.Controllers
             var token = _tokenService.GeneratePasswordResetToken(user.Id);
             var resetUrl = $"http://localhost:5173/reset?token={token}";
              await emailService.SendAsync(user.Email,"ResetPassword" ,resetUrl);
-
-            return Ok(new { message = "If the email exists, a reset link was sent." });
+            var localizedMessage = localizer["Password_Reset_Email_Sent"].Value;
+            return Ok(new { message = localizedMessage });
         }
 
         [HttpPost("reset")]

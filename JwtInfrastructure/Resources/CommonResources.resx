@@ -156,4 +156,7 @@
   <data name="Please_enter_a_valid_email_address" xml:space="preserve">
     <value>Please enter a valid email address</value>
   </data>
+  <data name="Password_Reset_Email_Sent" xml:space="preserve">
+    <value>If email exist reset password was sent</value>
+  </data>
 </root>

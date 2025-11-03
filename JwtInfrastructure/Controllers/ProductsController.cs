@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Localization;
+using System.Globalization;
 using System.Reflection;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
@@ -126,5 +127,26 @@ namespace JwtInfrastructure.Controllers
             return Ok();
         }
 
+        [HttpGet("price")]
+        public IActionResult GetPrice()
+        {
+            var message = _localizer["Price_Label"]; // auto-picks language
+            return Ok(new { message });
+        }
+
+        [HttpGet("details/{id}")]
+        public IActionResult GetProduct(int id)
+        {
+            var price = 123.45m;
+            var formattedPrice = price.ToString("C", CultureInfo.CurrentCulture);
+            var formattedDate = DateTime.Now.ToString("f", CultureInfo.CurrentCulture);
+
+            return Ok(new
+            {
+                Price = formattedPrice,
+                Date = formattedDate,
+                Culture = CultureInfo.CurrentCulture.Name
+            });
+        }
     }
 }
